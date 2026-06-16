@@ -1,0 +1,267 @@
+/* ═══════════════════════════════════════════════
+   JONDRIDEV DESIGN SYSTEM — TOKENS + TYPE
+   Earth-from-Space palette · Liquid Glass UI
+   Brand fonts are local. Sora is a variable font
+   covering weights 100–800 via `font-weight`.
+   (JetBrains Mono still loaded from Google CDN —
+   replace with local file when provided.)
+   ═══════════════════════════════════════════════ */
+
+@font-face { font-family:'Sora'; src: url('fonts/Sora-Thin.ttf')       format('truetype'); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family:'Sora'; src: url('fonts/Sora-ExtraLight.ttf') format('truetype'); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family:'Sora'; src: url('fonts/Sora-Light.ttf')      format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family:'Sora'; src: url('fonts/Sora-Regular.ttf')    format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family:'Sora'; src: url('fonts/Sora-Medium.ttf')     format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family:'Sora'; src: url('fonts/Sora-SemiBold.ttf')   format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family:'Sora'; src: url('fonts/Sora-Bold.ttf')       format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family:'Sora'; src: url('fonts/Sora-ExtraBold.ttf')  format('truetype'); font-weight: 800; font-style: normal; font-display: swap; }
+
+:root {
+  /* ── Type families ── */
+  --font: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ── Earth-from-Space · BRAND palette (vivid) ──
+     The accent layer: powers gradients, logos, buttons, badges.
+     Saturated on purpose — this is the identity, not a literal photo. */
+  --c-ocean:   #0a3d6b;
+  --c-shallow: #1a8caa;
+  --c-land:    #3c7a4a;
+  --c-desert:  #c4a265;
+  --c-cloud:   #e8edf2;
+  --c-atmos:   #5b8fb9;
+  --c-aurora:  #66d9a0;
+  --c-city:    #f0c94e;
+
+  /* ── Earth-from-Space · PHOTOGRAPHIC palette (literal) ──
+     Sampled from NASA Blue Marble / ISS night-side composites.
+     Use for backgrounds, swatches, imagery overlays, hero washes —
+     anywhere the brand wants to read as a real satellite view.
+     Do NOT use for buttons/badges; they need the vivid layer. */
+  --earth-ocean: #0b1a2e;  /* near-black navy deep water */
+  --earth-sea:   #1f4e79;  /* shallow shelf */
+  --earth-atmos: #8fb4d8;  /* pale cyan atmosphere rim */
+  --earth-land:  #4a5d3a;  /* muted olive landmass */
+  --earth-veg:   #6b8e6b;  /* vegetation green */
+  --earth-sand:  #b89968;  /* desert ochre */
+  --earth-city:  #e3b66b;  /* warm amber city-light */
+  --earth-cloud: #d8e0ea;  /* blue-cast cloud white */
+
+  /* ── App accents (one per first-party product) ── */
+  --c-keuangan: #66d9a0;  /* aurora */
+  --c-kamus:    #1a8caa;  /* shallow cyan */
+  --c-kosakata: #c4a265;  /* desert sand */
+  --c-pembaca:  #f0c94e;  /* city lights */
+  --c-cakra:    #5b8fb9;  /* atmosphere */
+
+  /* ── Semantic ── */
+  --c-success: #66d9a0;
+  --c-warn:    #f0c94e;
+  --c-danger:  #f87171;
+  --c-info:    #1a8caa;
+
+  /* ── Radius ── */
+  --r-sm: 10px; --r-md: 16px; --r-lg: 22px;
+  --r-xl: 30px; --r-2xl: 40px; --r-full: 9999px;
+
+  /* ── Spacing · 5-stop (12 & 32 omitted intentionally —
+        the rhythm is deliberately coarse so layouts stay on-grid) ── */
+  --sp-xs: 4px; --sp-sm: 8px; --sp-md: 16px;
+  --sp-lg: 24px; --sp-xl: 40px;
+
+  /* ── Border width ── */
+  --bw: 1px;
+
+  /* ── Opacity scale (glass + state alphas, tokenized) ── */
+  --op-fill:      0.08;  /* dark glass fill */
+  --op-fill-h:    0.13;  /* dark glass fill, hover */
+  --op-fill-lt:   0.22;  /* light glass fill */
+  --op-fill-lt-h: 0.32;  /* light glass fill, hover */
+  --op-edge:      0.24;  /* bright directional edge, dark */
+  --op-edge-dim:  0.08;  /* dim directional edge, dark */
+  --op-tint:      0.10;  /* badge/chip tinted fill */
+  --op-tint-h:    0.18;  /* tinted fill, hover */
+
+  /* ── Z-index scale (no more magic numbers) ── */
+  --z-base:    0;
+  --z-card:    1;
+  --z-bnav:    400;
+  --z-nav:     500;
+  --z-overlay: 700;
+  --z-toast:   900;
+  --z-modal:   1000;
+
+  /* ── Motion ── */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 0.15s;
+  --dur-mid:  0.28s;
+  --dur-slow: 0.5s;
+  --stagger:  42ms;   /* per-sibling delay for fade-up reveals */
+
+  /* ── Layout ── */
+  --nav-h:  56px;
+  --bnav-h: 68px;
+  --page-max: 640px;
+  --bp-tablet: 768px;   /* breakpoint tokens */
+  --bp-desktop: 1024px;
+
+  /* ── Brand gradients ── */
+  --grad-primary: linear-gradient(135deg, #1a8caa, #5b8fb9);
+  --grad-logo:    linear-gradient(135deg, #1a8caa, #5b8fb9, #66d9a0, #1a8caa);
+  --grad-hero:    linear-gradient(135deg, #1a8caa, #5b8fb9, #66d9a0);
+
+  /* ── Liquid Glass · prism edge ring (shared, theme-agnostic) ── */
+  --gl-prism: conic-gradient(from 210deg,
+    rgba(255,255,255,0)    0deg,
+    rgba(255,210,180,0.45) 40deg,
+    rgba(180,220,255,0.45) 160deg,
+    rgba(255,255,255,0)    220deg,
+    rgba(200,180,255,0.45) 300deg,
+    rgba(255,255,255,0)    360deg);
+}
+
+/* ── Dark theme (default) ── */
+[data-theme="dark"] {
+  --bg: #050a14;
+  --text:  #e4eaf4;
+  --text2: #7a8faa;
+  --text3: #2e3d54;
+
+  --grad:
+    radial-gradient(ellipse 120% 60% at 20% 8%,  rgba(10, 61,107, 0.55) 0%, transparent 55%),
+    radial-gradient(ellipse  80% 70% at 85% 12%, rgba(26,140,170, 0.30) 0%, transparent 50%),
+    radial-gradient(ellipse  60% 80% at 65% 88%, rgba(60,122, 74, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse  50% 50% at  8% 78%, rgba(91,143,185, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse  40% 40% at 50% 45%, rgba(240,201,78, 0.08) 0%, transparent 55%),
+    #050a14;
+
+  --gl-bg:       rgba(255, 255, 255, 0.08);
+  --gl-bg-h:     rgba(255, 255, 255, 0.13);
+  --gl-border-t: rgba(255, 255, 255, 0.24);
+  --gl-border-b: rgba(255, 255, 255, 0.08);
+  /* refined Liquid Glass: top specular line + bottom dark rim for lens weight */
+  --gl-fill: linear-gradient(180deg, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.05) 42%, rgba(255,255,255,0.035) 100%);
+  --gl-shadow:
+    inset 0 1.25px 0 rgba(255,255,255,0.45),
+    inset 0 0.5px 0 rgba(255,255,255,0.75),
+    inset 0 -1px 0 rgba(255,255,255,0.06),
+    inset 0 -7px 16px -10px rgba(0,0,0,0.40),
+    0 1px 3px rgba(0,0,0,0.35),
+    0 8px 24px rgba(0,0,0,0.25);
+  --gl-blur: blur(24px) saturate(180%) brightness(1.1);
+
+  --nav-bg:     rgba(5, 10, 20, 0.45);
+  --nav-border: rgba(255,255,255,0.16);
+  --nav-shadow: 0 0.5px 0 rgba(255,255,255,0.16) inset, 0 1px 8px rgba(0,0,0,0.40);
+}
+
+/* ── Light theme ── */
+[data-theme="light"] {
+  --bg: #dae6f2;
+  --text:  #0a1628;
+  --text2: #3d5a80;
+  --text3: #8fafc8;
+
+  --grad:
+    radial-gradient(ellipse 110% 55% at 15%  5%, rgba(26,140,170, 0.30) 0%, transparent 55%),
+    radial-gradient(ellipse  80% 60% at 88% 10%, rgba(91,143,185, 0.25) 0%, transparent 55%),
+    radial-gradient(ellipse  60% 70% at 60% 90%, rgba(60,122, 74, 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse  50% 50% at  5% 80%, rgba(196,162,101,0.10) 0%, transparent 50%),
+    radial-gradient(ellipse  45% 55% at 78% 68%, rgba(244,114,182,0.08) 0%, transparent 50%),
+    #dae6f2;
+
+  --gl-bg:       rgba(255, 255, 255, 0.22);
+  --gl-bg-h:     rgba(255, 255, 255, 0.32);
+  --gl-border-t: rgba(255, 255, 255, 0.75);
+  --gl-border-b: rgba(255, 255, 255, 0.20);
+  --gl-fill: linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.16) 45%, rgba(255,255,255,0.12) 100%);
+  --gl-shadow:
+    inset 0 1.25px 0 rgba(255,255,255,0.90),
+    inset 0 0.5px 0 rgba(255,255,255,1),
+    inset 0 -1px 0 rgba(255,255,255,0.30),
+    inset 0 -7px 16px -12px rgba(60,100,160,0.18),
+    0 1px 3px rgba(60,100,160,0.06),
+    0 8px 22px -8px rgba(60,100,160,0.14);
+  --gl-blur: blur(12px) saturate(140%);
+
+  --nav-bg:     rgba(218,230,242, 0.50);
+  --nav-border: rgba(255,255,255,0.60);
+  --nav-shadow: 0 0.5px 0 rgba(255,255,255,0.85) inset, 0 1px 8px rgba(60,100,160,0.06);
+}
+
+/* ═══════════════════════════════════════════════
+   Semantic type classes
+   ═══════════════════════════════════════════════ */
+
+.t-display {
+  font-family: var(--font);
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.t-h1 {
+  font-family: var(--font);
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.t-h2 {
+  font-family: var(--font);
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.t-h3 {
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.t-body {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--text2);
+}
+
+.t-small {
+  font-family: var(--font);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text2);
+}
+
+.t-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.t-mono {
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+/* Gradient text (headings & logo) */
+.t-grad {
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.t-grad2 {
+  background: var(--grad-hero);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
