@@ -35,6 +35,11 @@ jobs:
 
       - name: ⚙️ Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          # Auto-create the Pages site (Actions source) on first run, so no
+          # manual Settings → Pages step is needed. Needs a public repo on the
+          # Free plan, or any repo on Pro/Team.
+          enablement: true
 
       - name: 📤 Upload artifact
         uses: actions/upload-pages-artifact@v3
