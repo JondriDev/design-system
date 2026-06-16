@@ -261,3 +261,10 @@
   -webkit-text-fill-color: transparent;
 }
 .glow { text-shadow: 0 0 22px rgba(52, 245, 214, 0.45); }
+
+/* ═══════════════════════════════════════════════
+   Keyboard focus — one bright signal ring on every
+   interactive control. Mouse/touch focus stays clean.
+   ═══════════════════════════════════════════════ */
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: var(--r-sm); }
+:focus:not(:focus-visible) { outline: none; }
