@@ -1,102 +1,102 @@
-# JondriDev Design System
+# XENO · JondriDev Design System
 
-**Earth · Glass · Future** — the visual foundation for every JondriDev app.
+**A first-contact interface** — the visual foundation for every JondriDev app.
 
 JondriDev is an ecosystem of mobile-first apps built by a self-taught Indonesian
 developer. Everything shares one account, one cloud, and this single design
-system. It is bilingual (EN / ID) and ships both dark and light themes (dark is
-the default in `prefers-color-scheme: dark` environments).
+system. It is bilingual (EN / ID) and ships both dark and light themes (dark
+"Void" is the default).
 
 Two non-negotiables:
 
-1. **Earth-from-Space palette** — deep ocean, shallow cyan, land green, desert
-   sand, cloud white, atmosphere haze, aurora glow, city-light amber. Warm,
-   planetary, slightly romantic.
-2. **Liquid Glass** UI — near-transparent fills, heavy backdrop blur, directional
-   edges (bright top-left, dim bottom-right), a thin inset specular at the top,
-   a dark rim at the bottom, and a faint prismatic edge ring. Inspired by Apple's
-   Liquid Glass.
+1. **Deep-Field palette** — a void backdrop with bioluminescent signals: signal
+   teal, aurora green, plasma violet, ion blue, ember warm, xenon glow. Cold,
+   precise, slightly otherworldly — technology that doesn't look like it's from
+   here.
+2. **Holographic Glass** — near-invisible fills, heavy backdrop blur, a single
+   bright signal rim (top-left) fading to a dark void edge (bottom-right), and a
+   faint scanline texture beneath, as if the surface is being read by something.
 
 ## Structure
 
 | File | Purpose |
 |---|---|
-| `index.html` | The single-page showcase — four tabs (Design · UI Kit · Tokens · Account), language + theme toggles, the full component layer. Open it directly in a browser; no build step. |
-| `colors_and_type.css` | The reusable foundation: design tokens (colors, glass, spacing, radius, opacity, z-index, motion, layout) + semantic type classes + local `@font-face`. **Copy this into every app.** |
-| `fonts/` | Sora (weights 100–800, local `.ttf`) + the SIL Open Font License. JetBrains Mono is still loaded from the Google Fonts CDN. |
+| `index.html` | The single-page showcase — four tabs (System · Kit · Tokens · Network), language + theme toggles, the full component layer, a living constellation backdrop. Open it directly in a browser; no build step. |
+| `colors_and_type.css` | The reusable foundation: design tokens (palette, holo glass, spacing, radius, opacity, z-index, motion, layout) + semantic type classes + the `.holo` recipe + local `@font-face`. **Copy this into every app.** |
+| `fonts/` | Sora (weights 100–800, local `.ttf`) + the SIL Open Font License. JetBrains Mono loads from the Google Fonts CDN. |
 
-## Colors — two deliberate layers
+## Palette — Deep Field
 
-The Earth-from-Space identity exists in **two parallel token sets**:
+| Token | Role | Hex |
+|---|---|---|
+| `--signal` | Primary · bioluminescent teal | `#34F5D6` |
+| `--aurora` | Green | `#5CF0A8` |
+| `--ion` | Electric blue | `#4D9BFF` |
+| `--plasma` | Rare violet (accent) | `#B06BFF` |
+| `--ember` | Warm signal / warning | `#FF9B6B` |
+| `--xenon` | Pale luminescence / glow | `#D6FBF4` |
+| `--void` | Deep-field backdrop | `#03060E` |
 
-1. **Brand / accent (`--c-*`)** — *vivid, stylized.* Powers gradients, the logo,
-   buttons, badges, status dots, app accents. Saturated on purpose — this is the
-   identity, not a literal photo.
-2. **Photographic (`--earth-*`)** — *muted, literal.* Sampled from NASA Blue
-   Marble / ISS night-side composites. Use for backgrounds, swatches, hero
-   washes, imagery overlays.
-
-**Rule:** never use `--earth-*` for buttons/badges (too low-contrast) and never
-use the vivid `--c-*` for a full-bleed "satellite" background (too cartoon).
-Backgrounds are multi-stop radial gradients, never flat color.
+Backgrounds are multi-stop radial gradients over `--void`, never flat color.
 
 ### App accents
 
 | App | Role | Accent | Hex |
 |---|---|---|---|
-| **Keuangan** | Finance tracker | Aurora glow | `#66d9a0` |
-| **Kamus** | Dictionary | Shallow cyan | `#1a8caa` |
-| **Kosakata** | Vocabulary trainer | Desert sand | `#c4a265` |
-| **Pembaca** | Book reader | City lights | `#f0c94e` |
-| **Cakra** | AI assistant | Atmosphere | `#5b8fb9` |
+| **Keuangan** | Finance tracker | Aurora | `#5CF0A8` |
+| **Kamus** | Dictionary | Signal | `#34F5D6` |
+| **Kosakata** | Vocabulary trainer | Ember | `#FF9B6B` |
+| **Pembaca** | Book reader | Ion | `#4D9BFF` |
+| **Mesin** | Terminal emulator | Pale signal | `#9BF7E6` |
+| **Cakra** | AI agent | Plasma | `#B06BFF` |
 
 ## Typography
 
-- **Sora** — everything display, heading, UI, body. **Weight 800 (ExtraBold) is
-  the heaviest cut shipped — never specify 900** (it triggers fake-bold
-  synthesis). 800 for display/h1/h2; 700 for h3 / buttons; 500 for inputs; 400
-  for body.
-- **JetBrains Mono** — stat values, labels, tokens, code, eyebrow micro-type.
-- Body line-height is `1.75` — unusually generous, for relaxed mobile reading.
+- **Sora** — everything display, heading, UI, body. Weight **800 is the heaviest
+  local cut — never specify 900** (it triggers fake-bold synthesis). 800 for
+  display/h1/h2; 700 for h3 / buttons; 500 for inputs; 400 for body.
+- **JetBrains Mono** — telemetry, stat values, labels, tokens, glyph data, code,
+  eyebrow micro-type. The "alien readout" voice.
+- Body line-height is `1.75` — generous, for relaxed mobile reading in the dark.
 
-## Liquid Glass recipe
+## Holographic Glass recipe
 
-Every surface uses the `.gl` class, driven by `--gl-*` tokens:
+Every surface uses the `.holo` class, driven by `--holo-*` tokens:
 
-1. **Top specular line** — bright inset highlight. This is what reads as "glass."
-2. **Bottom dark rim** — gives the lens bottom weight.
-3. **Prismatic edge ring** — a faint conic gradient on the 1px border (`.gl::before`).
-4. **Directional border** — bright top-left, dim bottom-right.
-5. **Near-zero fill** — the blur does the work, not opacity.
+1. **Near-zero fill** — the backdrop blur does the work, not opacity.
+2. **Signal rim** — bright bioluminescent edge on top-left.
+3. **Void edge** — dark, dim border on bottom-right for weight.
+4. **Scanline overlay** — a faint repeating-linear-gradient (`.holo::after`),
+   blended `overlay`, so the glass reads as instrumented.
 
-Navbar / bottom nav use a stronger blur (`blur(32px)`) than cards. **Never nest
-`.gl` inside `.gl`** — compound glass looks muddy. True refraction
-(`feDisplacementMap`) is opt-in for one hero surface per screen, never on
-repeated cards (it tanks mobile-Safari scroll performance).
+Navbar / bottom nav use a stronger blur than cards. **Never nest `.holo` inside
+`.holo`** — compound glass looks muddy.
+
+## The living network
+
+The showcase paints a constellation field behind everything — a starfield plus a
+drifting node mesh that links up as nodes near each other. The **Network** tab
+renders the ecosystem as one literal node-graph: a CORE identity wired to every
+app. The interconnection, made visible.
 
 ## Accessibility
 
-- **Visible focus.** Every interactive element gets a 2px `:focus-visible` aurora
-  outline; inputs additionally show a 28%-alpha aurora ring (≥3:1 contrast — the
-  old 8% cyan ring failed WCAG).
-- **`--text3` is decorative only** (eyebrow labels, chevrons) — it fails AA for
-  body copy. Use `--text2`/`--text` for readable prose.
-- **Emoji icons** carry `aria-label` when they stand alone, and `aria-hidden`
-  when adjacent visible text already names them.
-- **Toggles announce state** via `aria-pressed`; the language pair is a labelled
-  `role="group"`.
-- **Reduced motion** clamps all animation/transition to `0.01ms`.
+- **Visible focus.** Interactive controls get a 2px `:focus-visible` signal
+  outline. Switches are real `<button role="switch">` with `aria-checked`.
+- **`--text3` is decorative only** (eyebrow labels, chevrons) — use
+  `--text2` / `--text` for readable prose.
+- **Reduced motion** clamps CSS animation/transition to `0.01ms` **and** omits
+  the SVG SMIL pulses on the network graph (CSS alone can't stop SMIL).
+- **Token snippets keep their units**, so copy-paste examples are valid CSS.
 
 ## Voice & copy
 
-Bilingual, confident, compact. Title Case for headings/badges, UPPER CASE +
-wide tracking for eyebrow labels. Signature punctuation: middle dot `·` as a
-connector (`Earth · Glass · Future`), `→` after CTAs, em-dash `—` for asides.
-Emoji is a first-class icon system — each app has a fixed emoji
-(💰 Keuangan · 📖 Kamus · 🧠 Kosakata · 📄 Pembaca · 🤖 Cakra); don't strip them.
-Write every user-facing string in both EN and ID.
+Bilingual, confident, compact. Title Case for headings, UPPER CASE + wide
+tracking for eyebrow / telemetry labels. Signature punctuation: middle dot `·`
+as a connector, `→` after CTAs, em-dash `—` for asides. Emoji and a constructed
+geometric **xeno-script** glyph set serve as the icon language. Write every
+user-facing string in both EN and ID.
 
 ---
 
-_Implemented from a Claude Design handoff bundle. Foundation tokens live in
-`colors_and_type.css`; the showcase composes them in `index.html`._
+_One account. One mesh. Many instruments._
