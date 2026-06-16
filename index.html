@@ -283,7 +283,8 @@
     .fill.go{width:68%}
 
     /* ── Switch ── */
-    .switch{width:46px;height:26px;border-radius:var(--r-full);background:var(--holo-bg);border:1px solid var(--holo-bt);position:relative;cursor:pointer;transition:all var(--dur-mid);flex-shrink:0}
+    .switch{width:46px;height:26px;border-radius:var(--r-full);background:var(--holo-bg);border:1px solid var(--holo-bt);position:relative;cursor:pointer;transition:all var(--dur-mid);flex-shrink:0;padding:0;margin:0;appearance:none;-webkit-appearance:none}
+    .switch:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
     .switch::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--text3);transition:all var(--dur-mid) var(--ease-spring)}
     .switch.on{background:rgba(52,245,214,0.18);border-color:var(--signal)}
     .switch.on::after{transform:translateX(20px);background:linear-gradient(135deg,#34f5d6,#4d9bff);box-shadow:0 0 12px rgba(52,245,214,0.7)}
@@ -492,9 +493,9 @@
 
       <div class="sec-title fade-up" data-i18n="sec-switch">Toggles</div>
       <div class="holo card-col fade-up">
-        <div class="row" style="justify-content:space-between"><span class="t-h3" data-i18n="sw-sync">Cloud Sync</span><div class="switch on" data-switch></div></div>
+        <div class="row" style="justify-content:space-between"><span class="t-h3" id="lbl-sync" data-i18n="sw-sync">Cloud Sync</span><button type="button" class="switch on" role="switch" aria-checked="true" aria-labelledby="lbl-sync" data-switch></button></div>
         <div class="divider"></div>
-        <div class="row" style="justify-content:space-between"><span class="t-h3" data-i18n="sw-haptic">Haptic Echo</span><div class="switch" data-switch></div></div>
+        <div class="row" style="justify-content:space-between"><span class="t-h3" id="lbl-haptic" data-i18n="sw-haptic">Haptic Echo</span><button type="button" class="switch" role="switch" aria-checked="false" aria-labelledby="lbl-haptic" data-switch></button></div>
       </div>
 
       <div class="sec-title fade-up" data-i18n="sec-skel">Acquiring Signal</div>
@@ -536,16 +537,16 @@
 --scan    <span class="c">/* scanline overlay     */</span></pre></div>
 
       <div class="sec-title fade-up" data-i18n="tok-space">Space &amp; Radius</div>
-      <div class="holo token fade-up"><pre>--r-sm:8  --r-md:14  --r-lg:20
---r-xl:28 --r-2xl:38 --r-full:9999
+      <div class="holo token fade-up"><pre>--r-sm:8px  --r-md:14px  --r-lg:20px
+--r-xl:28px --r-2xl:38px --r-full:9999px
 
---sp-xs:4 --sp-sm:8 --sp-md:16
---sp-lg:24 --sp-xl:40</pre></div>
+--sp-xs:4px --sp-sm:8px --sp-md:16px
+--sp-lg:24px --sp-xl:40px</pre></div>
 
       <div class="sec-title fade-up" data-i18n="tok-motion">Motion</div>
       <div class="holo token fade-up"><pre>--ease-out:    cubic-bezier(.16,1,.3,1)
 --ease-spring: cubic-bezier(.34,1.56,.64,1)
---dur-fast:.16 --dur-mid:.3 --dur-slow:.6</pre></div>
+--dur-fast:0.16s --dur-mid:0.28s --dur-slow:0.6s</pre></div>
 
       <div class="sec-title fade-up" data-i18n="tok-type">Type</div>
       <div class="holo token fade-up"><pre>--font: 'Sora', sans-serif
@@ -714,7 +715,7 @@
     document.querySelector('.theme-toggle').addEventListener('click',toggleTheme);
 
     /* ── switches ── */
-    document.querySelectorAll('[data-switch]').forEach(s=>s.addEventListener('click',()=>{s.classList.toggle('on');showToast(s.classList.contains('on')?'◉ Enabled':'○ Disabled')}));
+    document.querySelectorAll('[data-switch]').forEach(s=>s.addEventListener('click',()=>{const on=s.classList.toggle('on');s.setAttribute('aria-checked',on?'true':'false');showToast(on?'◉ Enabled':'○ Disabled')}));
 
     /* ── count-up telemetry ── */
     function countUp(el){
@@ -758,6 +759,8 @@
     /* ── ecosystem node-graph ── */
     (function(){
       const svg=document.getElementById('netgraph');if(!svg)return;
+      const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+      const halo=reduce?'':'<animate attributeName="r" values="9;14;9" dur="3s" repeatCount="indefinite"/>';
       const cx=180,cy=120;
       const nodes=[
         {x:60,y:46,c:'#5cf0a8',l:'KEU'},{x:300,y:50,c:'#34f5d6',l:'KAM'},
@@ -770,7 +773,7 @@
       s+='<circle class="net-core" cx="'+cx+'" cy="'+cy+'" r="16" opacity="0.6"/>';
       s+='<circle cx="'+cx+'" cy="'+cy+'" r="7" fill="#34f5d6"/><text x="'+cx+'" y="'+(cy+34)+'" fill="#7a98b4" font-family="JetBrains Mono" font-size="9" text-anchor="middle" letter-spacing="2">CORE</text>';
       nodes.forEach(n=>{
-        s+='<g class="net-node"><circle cx="'+n.x+'" cy="'+n.y+'" r="5" fill="'+n.c+'"/><circle cx="'+n.x+'" cy="'+n.y+'" r="11" fill="'+n.c+'" opacity="0.14"><animate attributeName="r" values="9;14;9" dur="3s" repeatCount="indefinite"/></circle>';
+        s+='<g class="net-node"><circle cx="'+n.x+'" cy="'+n.y+'" r="5" fill="'+n.c+'"/><circle cx="'+n.x+'" cy="'+n.y+'" r="11" fill="'+n.c+'" opacity="0.14">'+halo+'</circle>';
         s+='<text x="'+n.x+'" y="'+(n.y<cy?n.y-14:n.y+20)+'" fill="'+n.c+'" font-family="JetBrains Mono" font-size="8.5" text-anchor="middle" letter-spacing="1.5">'+n.l+'</text></g>';
       });
       svg.innerHTML=s;
