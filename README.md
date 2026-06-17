@@ -7,6 +7,10 @@ developer. Everything shares one account, one cloud, and this single design
 system. It is bilingual (EN / ID) and ships both dark and light themes (dark
 "Void" is the default).
 
+> 🔭 **Reference implementation:** [**The Empire**](https://jondridev.github.io/the-empire/)
+> — a 26-instrument web super-app that vendors these tokens 1:1. The
+> [**Network** tab](#the-living-network) of this showcase links straight into it.
+
 Two non-negotiables:
 
 1. **Deep-Field palette** — a void backdrop with bioluminescent signals: signal

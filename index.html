@@ -311,6 +311,9 @@
     .net-node circle{transition:r var(--dur-mid)}
     .applist{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
     .app{border-radius:var(--r-lg);padding:13px 15px;display:flex;align-items:center;gap:13px;transition:transform var(--dur-mid) var(--ease-out),background var(--dur-mid)}
+    a.app{color:inherit;text-decoration:none}
+    a.app:hover{transform:translateY(-2px)}
+    a.app .arrow{color:var(--text3);font-family:var(--mono);font-size:13px}
     .app:hover{transform:translateX(3px);background:var(--holo-bg-h)}
     .app .ic{width:38px;height:38px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;border:1px solid var(--hair)}
     .app .meta{flex:1;min-width:0}
@@ -574,16 +577,17 @@
         <div class="t-small" style="margin-top:4px;font-family:var(--mono);letter-spacing:0.1em" data-i18n="core-role">OPERATOR · CENTRAL BORNEO · IDN</div>
         <div class="row" style="justify-content:center;margin-top:14px">
           <span class="badge badge-signal"><span class="dot"></span><span data-i18n="core-online">MESH ONLINE</span></span>
-          <span class="badge badge-aurora">6 NODES</span>
+          <span class="badge badge-aurora">7 NODES</span>
         </div>
       </div>
 
       <div class="sec-title fade-up" data-i18n="sec-nodes">Connected Nodes</div>
       <div class="applist fade-up">
-        <div class="holo app"><div class="ic" style="color:var(--c-keuangan)">💰</div><div class="meta"><div class="t-h3">Keuangan</div><div class="t-small" data-i18n="a-keu">Finance tracker</div></div><div class="st s-keuangan"><span class="dot"></span>LIVE</div></div>
-        <div class="holo app"><div class="ic" style="color:var(--c-kamus)">📖</div><div class="meta"><div class="t-h3">Kamus</div><div class="t-small" data-i18n="a-kam">Dictionary + lexicon</div></div><div class="st s-kamus"><span class="dot"></span>LIVE</div></div>
-        <div class="holo app"><div class="ic" style="color:var(--c-mesin)">▦</div><div class="meta"><div class="t-h3">Mesin</div><div class="t-small" data-i18n="a-mes">Terminal emulator</div></div><div class="st s-mesin"><span class="dot"></span>LIVE</div></div>
-        <div class="holo app"><div class="ic" style="color:var(--c-cakra)">🜂</div><div class="meta"><div class="t-h3">Cakra</div><div class="t-small" data-i18n="a-cak">AI agent · OpenManus</div></div><div class="st s-cakra"><span class="dot"></span>LINKED</div></div>
+        <a class="holo app" href="https://jondridev.github.io/the-empire/" target="_blank" rel="noopener"><div class="ic" style="color:var(--c-kamus)">⬡</div><div class="meta"><div class="t-h3">The Empire</div><div class="t-small" data-i18n="a-emp">26-instrument web super-app</div></div><div class="st s-kamus"><span class="dot"></span>LIVE<span class="arrow">↗</span></div></a>
+        <a class="holo app" href="https://jondridev.github.io/the-empire/#keuangan" target="_blank" rel="noopener"><div class="ic" style="color:var(--c-keuangan)">💰</div><div class="meta"><div class="t-h3">Keuangan</div><div class="t-small" data-i18n="a-keu">Finance tracker</div></div><div class="st s-keuangan"><span class="dot"></span>LIVE<span class="arrow">↗</span></div></a>
+        <a class="holo app" href="https://jondridev.github.io/the-empire/#kamus" target="_blank" rel="noopener"><div class="ic" style="color:var(--c-kamus)">📖</div><div class="meta"><div class="t-h3">Kamus</div><div class="t-small" data-i18n="a-kam">Dictionary + lexicon</div></div><div class="st s-kamus"><span class="dot"></span>LIVE<span class="arrow">↗</span></div></a>
+        <a class="holo app" href="https://jondridev.github.io/mesin/" target="_blank" rel="noopener"><div class="ic" style="color:var(--c-mesin)">▦</div><div class="meta"><div class="t-h3">Mesin</div><div class="t-small" data-i18n="a-mes">Terminal emulator</div></div><div class="st s-mesin"><span class="dot"></span>LIVE<span class="arrow">↗</span></div></a>
+        <a class="holo app" href="https://jondridev.github.io/the-empire/#cakra" target="_blank" rel="noopener"><div class="ic" style="color:var(--c-cakra)">🜂</div><div class="meta"><div class="t-h3">Cakra</div><div class="t-small" data-i18n="a-cak">AI agent · OpenManus</div></div><div class="st s-cakra"><span class="dot"></span>LINKED<span class="arrow">↗</span></div></a>
         <div class="holo app"><div class="ic" style="color:var(--c-pembaca)">📡</div><div class="meta"><div class="t-h3" data-i18n="a-hub-t">Pusat Data</div><div class="t-small" data-i18n="a-hub">Local cloud · Termux</div></div><div class="st s-pembaca"><span class="dot"></span>HOST</div></div>
       </div>
 
@@ -668,6 +672,7 @@
     'core-role':{en:'OPERATOR · CENTRAL BORNEO · IDN',id:'OPERATOR · KALIMANTAN TENGAH · IDN'},
     'core-online':{en:'MESH ONLINE',id:'JARING AKTIF'},
     'sec-nodes':{en:'Connected Nodes',id:'Simpul Terhubung'},
+    'a-emp':{en:'26-instrument web super-app',id:'Super-app web · 26 instrumen'},
     'a-keu':{en:'Finance tracker',id:'Pelacak keuangan'},
     'a-kam':{en:'Dictionary + lexicon',id:'Kamus + leksikon'},
     'a-mes':{en:'Terminal emulator',id:'Emulator terminal'},
@@ -766,6 +771,7 @@
       const halo=reduce?'':'<animate attributeName="r" values="9;14;9" dur="3s" repeatCount="indefinite"/>';
       const cx=180,cy=120;
       const nodes=[
+        {x:180,y:28,c:'#34f5d6',l:'EMP'},
         {x:60,y:46,c:'#5cf0a8',l:'KEU'},{x:300,y:50,c:'#34f5d6',l:'KAM'},
         {x:36,y:150,c:'#9bf7e6',l:'MSN'},{x:324,y:160,c:'#b06bff',l:'CKR'},
         {x:120,y:210,c:'#4d9bff',l:'HUB'},{x:250,y:208,c:'#ff9b6b',l:'KOS'}
